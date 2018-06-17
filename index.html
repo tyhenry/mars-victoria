@@ -3,19 +3,133 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Victoria Crater</title>
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Builds.json");
-    </script>
+    <title>Victoria Crater | Unity WebGL Player </title>
+    <style>
+
+    	body {
+    		margin: 0; padding: 0; background-color: #000; color: #dedede; 
+    	}
+
+    	#page {
+    		display: flex; 
+    		align-items: center; 
+    		justify-content: center; 
+    		height: 100vh; 
+    		background-color: #000;
+    		background: url('/imgs/victoria_crater_bg.jpg'); 
+    		background-size: cover;
+    	}
+
+    	#gameContainer {
+    		width: 100%; height: 75%;
+    	}
+
+    	#load-call {
+    		position: absolute;
+    		top: 50%;
+    		left: 50%;
+    		height: 250px; width: 500px;
+    		margin: -125px 0 0 -250px; 
+    		text-align: left; 
+			font-family: Arial;
+
+    	}
+
+    	.btn {
+			  -webkit-border-radius: 0;
+			  -moz-border-radius: 0;
+			  border-radius: 2px;
+			  font-family: Arial;
+			  color: #dedede;
+			  font-size: 20px;
+			  background: none;
+			  padding: 10px 20px 10px 20px;
+			  border: solid #dedede 4px;
+			  font-weight: bold;
+			  text-decoration: none;
+			  display: inline-block;
+    	}
+
+    	.btn:hover {
+		    background: rgba(0,0,0,0.3);
+  			text-decoration: none;
+    	}
+
+    	.btn-line {
+    		margin-bottom: 30px;
+    	}
+
+    	#popup-controls {
+    		font-family: Arial;
+    		display: none; 
+    		position: absolute; 
+    		bottom: 0; right: 0; 
+    		height: 36px; width: 250px; 
+    		background-color: rgba(0,0,0,0.3); 
+    		color: #dedede; 
+    		text-align: center; 
+    		font-size: 12px; 
+    		padding: 10px;
+    	}
+
+
+    	h1, h2, h3 {
+    		font-family: Arial;
+			color: #dedede;
+			font-weight: bold;
+    	}
+
+    	h1 {
+    		font-size: 3em;
+    	}
+    	h2 {
+    		font-size: 2.5em;
+    	}
+    	h3 {
+    		font-size: 2em;
+    	}
+    	.note {
+    		font-size: 1.4em;
+    		padding: 0 20px;
+    		margin-bottom: 20px;
+    	    font-style: italic;
+    	}
+
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; background-color: #000;">
-  	<div class="page" style="display: flex; align-items: center; justify-content: center; height: 100vh; background-color: #000;">
-    <div id="gameContainer" style="width: 100%; height: 100%;"></div>
+  <body>
+  	<div id="page">
+
+    	<div id="gameContainer"></div>
+
+    	<div id="load-call">
+			<h1>Victoria Crater, Mars</h1>
+			<div class="btn-line">
+				<button class="btn" onclick="loadGame()">LOAD</button>
+				<span class="note">Desktop only - Unity WebGL</span>
+			</div>
+			<p>Use headphones for stereo</p>
+		</div>
+
+		<div id="popup-controls">
+			Click &amp; move mouse to look around.<br/>
+			Use W,A,S,D or arrow keys to travel.
+		</div>
+
 	</div>
-	<div style="position: absolute; bottom: 0; right: 0; height: 36px; width: 250px; font-family: sans-serif; background-color: rgba(0,0,0,0.3); color: #ff1100; text-align: center; font-size: 12px; padding: 10px;">
-	Click & move mouse to look around.<br/>
-	Use W,A,S,D or arrow keys to move.
-	</div>
+
+
   </body>
+  <script src="Build/UnityLoader.js"></script>
+  <script>
+
+      var gameInstance = 0;
+      function loadGame(){
+      	gameInstance = UnityLoader.instantiate("gameContainer", "Build/Builds.json");
+
+      	document.getElementById('popup-controls').style.display = "block";
+      	document.getElementById('load-call').style.display = "none";
+      	document.getElementById('page').style.background = "none";
+      }
+  </script>
 </html>
